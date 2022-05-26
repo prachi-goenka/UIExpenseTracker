@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <title>View Expense</title>
+  </head>
+  <body>
+    <div class="header">
+       <a href="index.html" class="navbar-brand">XpenseT</a>
+      <a class="headLink" href="addXpensePage.html">Add New Expense</a>
+      <a class="headLink" href="addMoney.html">Add Money</a>
+      <a class="headLink" href="viewBalance.html">View Balance</a>
+      <a class="headLink" href="viewAnalysis.html">Expense Analysis</a>
+      <a class="headLink login" href="index.html">Log Out</a>
+    </div>
+    <center>
+  		<div class="container">
+          <h2>List of expenses</h2>
+
+          <table class="table" style="border:1px solid white">
+         <thead>
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>Date of Expense made</th>
+                <th>Category</th>
+                <th></th>
+            </tr>
+             </thead>
+             <tbody>
+            <tr th:each="xp : ${xpenses}">
+                <td th:text="${xp.id}"></td>
+                <td th:text="${xp.amount}"></td>
+                <td th:text="${xp.billdate}"></td>
+                <td th:text="${xp.category}"></td>
+            	<td><a th:href="${'/delete/'+xp.id}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Delete</a> </td>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+   </center>
+  </body>
+</html>

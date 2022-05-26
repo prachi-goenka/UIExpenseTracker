@@ -1,0 +1,87 @@
+Week<!DOCTYPE html>
+<html xmlns="https://www.thymeleafe.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Weekly Expenditure</title>
+<link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+ <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="header">
+    <a class="headLink" href="index.html">Home</a>
+    <a class="headLink" href="addXpensePage.html">Add New Expense</a>
+    <a class="headLink" href="addMoney.html">Add Money</a>
+    <a class="headLink" href="viewBalance.html">View Balance</a>
+      <a class="headLink" href="viewExpense.html">View Expense</a>
+    <a class="headLink" href="viewAnalysis.html">Expense Analysis</a>
+    <a class="headLink login" href="index.html">Log Out</a>
+  </div>
+</div>
+<center>
+  <h2>Weekly Expenditure Analysis</h2>
+
+</center>
+<div>
+    <figure class="highcharts-figure">
+        <div id="container-bar"></div>
+    </figure>
+    <script type="text/javascript">
+        $(document).ready(
+                function() {
+                    $.ajax({
+                        url : "/WeekWiseGraph/data",
+                        success : function(result) {
+                            var weeks= [];
+                            var moneyspent = [];
+                            console.log(result);
+                            Object.keys(result).forEach(
+                                    function(key) {
+                                    	weeks.push(key);
+                                    	moneyspent.push(result[key]);
+                                    });
+                            drawChart(weeks, moneyspent);
+                        }
+                    });
+                });
+
+        function drawChart(weeks, moneyspent) {
+            Highcharts.chart('container-bar', {
+                chart : {
+                    type : 'column',
+                    styledMode : true
+                },
+                title : {
+                    text : 'Week wise expenses'
+                },
+                xAxis : [ {
+                    title : {
+                        text : 'Week'
+                    },
+                    categories : weeks
+                } ],
+                yAxis : [ {
+                    className : 'highcharts-color-0',
+                    title : {
+                        text : 'Money spent'
+                    }
+                } ],
+                series : [ {
+                    data : moneyspent
+                } ]
+            });
+        }
+    </script>
+    </div>
+</body>
+</html>

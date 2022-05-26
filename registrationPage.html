@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <title>Registration Page</title>
+  </head>
+  <body>
+       <div class="header">
+           <a href="index.html" class="navbar-brand">XpenseT</a>
+       <a class="headLink" href="loginPage.html">Log In</a>
+       </div>
+
+    <form class="form-horizontal" action="#" th:action="@{/register}" th:object="${user}" method="post">
+         <center><h2>User Registration</h2></center>
+
+     <div class="form-group">
+     <label class="col-sm-2 control-label" for="firstName">First Name</label>
+     <div class="col-xs-8">
+     <input class="form-control" th:field="*{firstName}" type="text" name="firstName"></input>
+     </div>
+     </div>
+
+
+     <div class="form-group">
+     <label class="col-sm-2 control-label" for="lastName">Last Name</label>
+      <div class="col-xs-8">
+           <input class="form-control" th:field="*{lastName}" type="text" name="lastName"></input>
+           </div>
+     </div>
+
+           <div class="form-group">
+           <label class="col-sm-2 control-label" for="emailId">Email</label>
+            <div class="col-xs-8">
+           <input class="form-control" th:field="*{emailId}" type="text" name="emailId"></input>
+           </div>
+     </div>
+
+           <div class="form-group">
+           <label class="col-sm-2 control-label" for="password">Password</label>
+            <div class="col-xs-8">
+           <input class="form-control" th:field="*{password}" type="password" name="password"></input>
+           </div>
+     </div>
+
+           <div class="row">
+           <center>
+           <input class="btn btn-primary" type="reset" value="Clear"/>
+           <input class="btn btn-primary" type="submit" value="Submit"></input>
+          <h6><em>If registered already, <a href="loginPage.html">LogIn</a>
+           </em></h6>
+           </center>
+           </div>
+      </form>
+
+  </body>
+</html>
